@@ -116,6 +116,11 @@ void* IGraphicsMac::OpenWindow(void* pParent)
   return mView;
 }
 
+void IGraphicsMac::AddSubView(void* subview)
+{
+  [(IGRAPHICS_VIEW*) mView addSubview:(NSView*) subview];
+}
+
 void IGraphicsMac::CloseWindow()
 {
   if (mView)

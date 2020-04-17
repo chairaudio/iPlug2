@@ -842,6 +842,7 @@ public:
   /** Get the platform level draw context - an HDC or CGContextRef
    * @return void pointer to an HDC or CGContext */
   void* GetPlatformContext() { return mPlatformContext; }
+  virtual void AddSubView(void* viewToAdd) { /* no-op*/ }
   
   /** Convert an x, y position in the view to screen coordinates
    * @param x the x position to convert

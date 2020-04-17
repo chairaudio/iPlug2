@@ -67,6 +67,7 @@ public:
 
   void ContextReady(void* pLayer);
 
+  void AddSubView(void* subview) override;
 protected:
   void CreatePlatformImGui() override;
 
