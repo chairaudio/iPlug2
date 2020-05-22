@@ -734,6 +734,9 @@ private:
 
 public:
 #pragma mark - Platform implementation
+  
+  virtual void AddPlatformView(const IRECT& r, void* pPlatformView) {};
+
   /** Get the x, y position in the graphics context of the mouse cursor
    * @param x Where the X position will be stored
    * @param y Where the Y position will be stored */

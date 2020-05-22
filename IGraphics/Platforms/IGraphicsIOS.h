@@ -33,6 +33,7 @@ public:
   void CloseWindow() override;
   bool WindowIsOpen() override;
   void PlatformResize(bool parentHasResized) override;
+  void AddPlatformView(const IRECT& r, void* pPlatformView) override;
 
   void GetMouseLocation(float& x, float&y) const override;
 

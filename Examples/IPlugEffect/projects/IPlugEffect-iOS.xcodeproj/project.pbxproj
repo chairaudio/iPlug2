@@ -36,7 +36,6 @@
 		4FA61F8F22E89B4300A92C58 /* IGraphicsIOS_view.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F63699120A463AF0022C370 /* IGraphicsIOS_view.mm */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		4FA61F9022E8A1F500A92C58 /* IGraphics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4F63699420A463AF0022C370 /* IGraphics.cpp */; };
 		4FA61F9122E8A2A700A92C58 /* IGraphicsNanoVG_src.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8D7DCB224AE821002A1A2A /* IGraphicsNanoVG_src.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
-		4FA61F9222E8A2B500A92C58 /* IPlugEffect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4FFF108720A1036200D3092F /* IPlugEffect.cpp */; };
 		4FA61F9422E8A71D00A92C58 /* IPlugAUViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4FFF105A20A0E57100D3092F /* IPlugAUViewController.mm */; };
 		4FA61F9722E8A7E900A92C58 /* IPlugAUViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4FFF105A20A0E57100D3092F /* IPlugAUViewController.mm */; };
 		4FB2269720A0D3A800614769 /* IPlugEffect-iOS-LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FB2269620A0D3A800614769 /* IPlugEffect-iOS-LaunchScreen.storyboard */; };
@@ -44,6 +43,7 @@
 		4FDF6D792267CE540007B686 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FDF6D742267CE540007B686 /* main.m */; };
 		4FDF6D7B2267CE540007B686 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FDF6D752267CE540007B686 /* AppDelegate.m */; };
 		4FDF6D7F2267CEBA0007B686 /* IPlugAUPlayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4FDF6D7D2267CEBA0007B686 /* IPlugAUPlayer.mm */; };
+		4FF8974C24782DE9004845AC /* IPlugEffect.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4FF8974B24782DE9004845AC /* IPlugEffect.mm */; };
 		91236D811B08F59300734C5E /* IPlugEffectAppExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 91236D771B08F59300734C5E /* IPlugEffectAppExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
@@ -206,6 +206,7 @@
 		4FE8F3AF20BA273800BF938F /* IGraphicsEditorDelegate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IGraphicsEditorDelegate.cpp; sourceTree = "<group>"; };
 		4FE8F3B020BA273800BF938F /* IGraphicsEditorDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IGraphicsEditorDelegate.h; sourceTree = "<group>"; };
 		4FF3204920B2BC4C00269268 /* IPlugPaths.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = IPlugPaths.h; path = ../../../IPlug/IPlugPaths.h; sourceTree = "<group>"; };
+		4FF8974B24782DE9004845AC /* IPlugEffect.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = IPlugEffect.mm; path = ../IPlugEffect.mm; sourceTree = "<group>"; };
 		4FFF103020A0E55900D3092F /* IPlugConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IPlugConstants.h; path = ../../../IPlug/IPlugConstants.h; sourceTree = "<group>"; };
 		4FFF103120A0E55900D3092F /* IPlugQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IPlugQueue.h; path = ../../../IPlug/IPlugQueue.h; sourceTree = "<group>"; };
 		4FFF103220A0E55900D3092F /* IPlugParameter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = IPlugParameter.cpp; path = ../../../IPlug/IPlugParameter.cpp; sourceTree = "<group>"; };
@@ -243,7 +244,6 @@
 		4FFF107720A0E5A500D3092F /* wdlendian.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = wdlendian.h; path = ../../../WDL/wdlendian.h; sourceTree = "<group>"; };
 		4FFF108220A0FB1400D3092F /* common-ios.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = "common-ios.xcconfig"; path = "../../../common-ios.xcconfig"; sourceTree = "<group>"; };
 		4FFF108420A1036200D3092F /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = config.h; path = ../config.h; sourceTree = "<group>"; };
-		4FFF108720A1036200D3092F /* IPlugEffect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = IPlugEffect.cpp; path = ../IPlugEffect.cpp; sourceTree = "<group>"; };
 		4FFF108820A1036200D3092F /* IPlugEffect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IPlugEffect.h; path = ../IPlugEffect.h; sourceTree = "<group>"; };
 		91236D0D1B08F42B00734C5E /* IPlugEffect.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IPlugEffect.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		91236D771B08F59300734C5E /* IPlugEffectAppExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = IPlugEffectAppExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -559,7 +559,7 @@
 			children = (
 				4FFF108420A1036200D3092F /* config.h */,
 				4FFF108820A1036200D3092F /* IPlugEffect.h */,
-				4FFF108720A1036200D3092F /* IPlugEffect.cpp */,
+				4FF8974B24782DE9004845AC /* IPlugEffect.mm */,
 				4F8D8BD82316701900EFA1FB /* README.md */,
 				4F8BF48D20A12D2E0081DF0A /* Resources */,
 				4F67D51620A121F60061FB8E /* Other Sources */,
@@ -659,12 +659,12 @@
 				LastUpgradeCheck = 1200;
 				TargetAttributes = {
 					4FA61F6D22E899B500A92C58 = {
-						DevelopmentTeam = "$(DEVELOPMENT_TEAM)";
+						DevelopmentTeam = 686EDA2T8T;
 						ProvisioningStyle = Automatic;
 					};
 					91236D0C1B08F42B00734C5E = {
 						CreatedOnToolsVersion = 7.0;
-						DevelopmentTeam = "$(DEVELOPMENT_TEAM)";
+						DevelopmentTeam = 686EDA2T8T;
 						LastSwiftMigration = 1010;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
@@ -680,7 +680,7 @@
 					};
 					91236D761B08F59300734C5E = {
 						CreatedOnToolsVersion = 7.0;
-						DevelopmentTeam = "$(DEVELOPMENT_TEAM)";
+						DevelopmentTeam = 686EDA2T8T;
 						LastSwiftMigration = 1010;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
@@ -768,6 +768,7 @@
 			files = (
 				4FA61F9122E8A2A700A92C58 /* IGraphicsNanoVG_src.m in Sources */,
 				4FA61F8422E89B2000A92C58 /* GenericUI.mm in Sources */,
+				4FF8974C24782DE9004845AC /* IPlugEffect.mm in Sources */,
 				4FA61F8622E89B2000A92C58 /* IPlugAUv3.mm in Sources */,
 				4FA61F8522E89B2000A92C58 /* IPlugAUAudioUnit.mm in Sources */,
 				4F0BA47B24698DC900DB93AC /* IGraphicsIOS_src.m in Sources */,
@@ -785,7 +786,6 @@
 				4FA61F8122E89AFF00A92C58 /* IPlugParameter.cpp in Sources */,
 				4F0D965B23099F5A00BFDED0 /* IPlugProcessor.cpp in Sources */,
 				4FA61F7F22E89AFF00A92C58 /* IPlugAPIBase.cpp in Sources */,
-				4FA61F9222E8A2B500A92C58 /* IPlugEffect.cpp in Sources */,
 				4FA61F8A22E89B3700A92C58 /* IPopupMenuControl.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

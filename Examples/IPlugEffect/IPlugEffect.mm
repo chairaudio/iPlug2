@@ -2,6 +2,25 @@
 #include "IPlug_include_in_plug_src.h"
 #include "IControls.h"
 
+#import <UIKit/UIKit.h>
+
+@interface MyUIView : UIView {
+@public
+}
+@end
+
+@implementation MyUIView
+{
+}
+
+- (id) initWithColor: (UIColor*) color;
+{
+  self = [super initWithFrame:CGRectMake(0, 0, 0, 0)];
+  self.backgroundColor = color;
+  return self;
+}
+@end
+
 IPlugEffect::IPlugEffect(const InstanceInfo& info)
 : Plugin(info, MakeConfig(kNumParams, kNumPrograms))
 {
@@ -19,6 +38,8 @@ IPlugEffect::IPlugEffect(const InstanceInfo& info)
     const IRECT b = pGraphics->GetBounds();
     pGraphics->AttachControl(new ITextControl(b.GetMidVPadded(50), "Hello iPlug 2!", IText(50)));
     pGraphics->AttachControl(new IVKnobControl(b.GetCentredInside(100).GetVShifted(-100), kGain));
+    
+    pGraphics->AddPlatformView(b.GetCentredInside(100), [[MyUIView alloc] initWithColor:UIColor.blueColor]);
   };
 #endif
 }

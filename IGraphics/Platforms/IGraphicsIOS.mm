@@ -159,6 +159,16 @@ void IGraphicsIOS::PlatformResize(bool parentHasResized)
   }
 }
 
+void IGraphicsIOS::AddPlatformView(const IRECT& r, void* pPlatformView)
+{
+  IGRAPHICS_VIEW* pMainView = (IGRAPHICS_VIEW*) mView;
+  
+  UIView* pNewSubView = (UIView*) pPlatformView;
+  [pNewSubView setFrame:ToCGRect(this, r)];
+
+  [pMainView addSubview:pNewSubView];
+}
+
 EMsgBoxResult IGraphicsIOS::ShowMessageBox(const char* str, const char* caption, EMsgBoxType type, IMsgBoxCompletionHanderFunc completionHandler)
 {
   ReleaseMouseCapture();
