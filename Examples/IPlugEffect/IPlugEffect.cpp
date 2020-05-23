@@ -19,6 +19,7 @@ IPlugEffect::IPlugEffect(const InstanceInfo& info)
     pGraphics->LoadFont("Roboto-Regular", ROBOTO_FN);
     const IRECT b = pGraphics->GetBounds();
     pGraphics->AttachControl(new IWebViewControl(b.GetCentredInside(300)));
+    pGraphics->AttachControl(new IWebViewControl(b.GetFromBottom(200)));
   };
 #endif
 }

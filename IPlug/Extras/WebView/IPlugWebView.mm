@@ -62,7 +62,7 @@ IWebView::~IWebView()
   CloseWebView();
 }
 
-void* IWebView::OpenWebView(int x, int y, int w, int h)
+void* IWebView::OpenWebView(void* pParent, float x, float y, float w, float h, float scale)
 {  
   WKWebViewConfiguration* webConfig = [[WKWebViewConfiguration alloc] init];
   WKPreferences* preferences = [[WKPreferences alloc] init];
@@ -97,6 +97,8 @@ void* IWebView::OpenWebView(int x, int y, int w, int h)
   mWebConfig = (__bridge void*) webConfig;
   mWKWebView = (__bridge void*) webView;
   mScriptHandler = (__bridge void*) scriptHandler;
+  
+  OnWebViewReady();
 
   return (__bridge void*) webView;
 }
@@ -123,7 +125,7 @@ void IWebView::LoadURL(const char* url)
   [webView loadRequest:req];
 }
 
-void IWebView::EvaluateJavaScript(const char* scriptStr)
+void IWebView::EvaluateJavaScript(const char* scriptStr, completionHandlerFunc func)
 {
   WKWebView* webView = (__bridge WKWebView*) mWKWebView;
   
@@ -132,6 +134,11 @@ void IWebView::EvaluateJavaScript(const char* scriptStr)
      {
        if(error != nil)
          NSLog(@"Error %@",error);
+      else
+      {
+        const WDL_String str {[result UTF8String]};
+        func(str);
+      }
      }];
   }
 }
@@ -142,5 +149,13 @@ void IWebView::EnableScroll(bool enable)
   WKWebView* webView = (__bridge WKWebView*) mWKWebView;
   [webView.scrollView setScrollEnabled:enable];
 #endif
+}
+
+void IWebView::SetWebViewBounds(float x, float y, float w, float h, float scale)
+{
+//  [NSAnimationContext beginGrouping]; // Prevent animated resizing
+//  [[NSAnimationContext currentContext] setDuration:0.0];
+  [(__bridge WKWebView*) mWKWebView setFrame: MAKERECT(x, y, (float) w, (float) h) ];
+//  [NSAnimationContext endGrouping];
 }
 

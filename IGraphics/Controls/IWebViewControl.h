@@ -38,13 +38,14 @@ public:
   
   void Draw(IGraphics& g) override
   {
+     /* NO-OP */
   }
 
   void OnWebViewReady() override
   {
-    WDL_String html{ "<p contentEditable=\"true\"\>Hello</p>" };
+    WDL_String html{ "<p contentEditable=\"true\">Hello</p>" };
     LoadHTML(html);
-    //LoadURL("https://google.com");
+//    LoadURL("https://google.com");
   }
 
   void OnRescale() override

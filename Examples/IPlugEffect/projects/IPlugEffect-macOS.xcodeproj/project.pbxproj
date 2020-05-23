@@ -264,6 +264,13 @@
 		4FB600231567CB0A0020189A /* IPlugParameter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4F78D90413B63BA50032E0F3 /* IPlugParameter.cpp */; };
 		4FB600261567CB0A0020189A /* AAX_Exports.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4F4CC38A1549B91100A9EA21 /* AAX_Exports.cpp */; };
 		4FB600281567CB0A0020189A /* IPlugAAX_Describe.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4F4CC4401549C15500A9EA21 /* IPlugAAX_Describe.cpp */; };
+		4FB64D06247956AA006B3013 /* IPlugWebView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F7DB9CB247890B700ACF64B /* IPlugWebView.mm */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		4FB64D07247956AA006B3013 /* IPlugWebView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F7DB9CB247890B700ACF64B /* IPlugWebView.mm */; };
+		4FB64D08247956AA006B3013 /* IPlugWebView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F7DB9CB247890B700ACF64B /* IPlugWebView.mm */; };
+		4FB64D09247956AB006B3013 /* IPlugWebView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F7DB9CB247890B700ACF64B /* IPlugWebView.mm */; };
+		4FB64D0A247956AC006B3013 /* IPlugWebView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F7DB9CB247890B700ACF64B /* IPlugWebView.mm */; };
+		4FB64D0B247956AF006B3013 /* IPlugWebView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F7DB9CB247890B700ACF64B /* IPlugWebView.mm */; };
+		4FB64D0C247956B3006B3013 /* IPlugWebView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F7DB9CB247890B700ACF64B /* IPlugWebView.mm */; };
 		4FC3EFCB2086C27800BD11FA /* IPlugEffect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4F3862ED2014BBEC0009F402 /* IPlugEffect.cpp */; };
 		4FC3EFCE2086C35D00BD11FA /* IPlugPluginBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4F35DEAB207E5C5A00867D8F /* IPlugPluginBase.cpp */; };
 		4FC3EFD42086C49D00BD11FA /* IPlugEffectVST3Controller.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FC3EFC42086C0A600BD11FA /* IPlugEffectVST3Controller.a */; };
@@ -2295,6 +2302,7 @@
 				4F78D9BB13B63BA50032E0F3 /* IPlugAPIBase.cpp in Sources */,
 				4FB1F59020E4B010004157C8 /* IGraphicsMac_view.mm in Sources */,
 				4FA9F80E21F76177004E6FE2 /* IGraphicsAGG_src.mm in Sources */,
+				4FB64D06247956AA006B3013 /* IPlugWebView.mm in Sources */,
 				4F993F7223055C96000313AF /* IPlugProcessor.cpp in Sources */,
 				4F35DEAE207E5C5A00867D8F /* IPlugPluginBase.cpp in Sources */,
 				4F6FD2B222675B6300FC59E6 /* IGraphicsCoreText.mm in Sources */,
@@ -2326,6 +2334,7 @@
 				4F8C10E320BA2796006320CD /* IGraphicsEditorDelegate.cpp in Sources */,
 				4F6FD2B422675B6300FC59E6 /* IGraphicsCoreText.mm in Sources */,
 				4F9A82FA213DE80400BE63A4 /* IPopupMenuControl.cpp in Sources */,
+				4FB64D08247956AA006B3013 /* IPlugWebView.mm in Sources */,
 				4FDAC0ED207D76C600299363 /* IPlugTimer.cpp in Sources */,
 				4F78D94513B63BA50032E0F3 /* IPlugAPIBase.cpp in Sources */,
 				4FB1F59320E4B013004157C8 /* IGraphicsMac_view.mm in Sources */,
@@ -2344,6 +2353,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F3EE1C2231438D000004786 /* IPlugProcessor.cpp in Sources */,
+				4FB64D0C247956B3006B3013 /* IPlugWebView.mm in Sources */,
 				4F3EE1C3231438D000004786 /* RtMidi.cpp in Sources */,
 				4F3EE1C4231438D000004786 /* IGraphicsLice_src.mm in Sources */,
 				4F3EE1C5231438D000004786 /* IGraphicsNanoVG_src.m in Sources */,
@@ -2387,6 +2397,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F78BE1422E7406D00AD537E /* IPlugEffect.h in Sources */,
+				4FB64D0B247956AF006B3013 /* IPlugWebView.mm in Sources */,
 				4F0D965C23099F6900BFDED0 /* IPlugProcessor.cpp in Sources */,
 				4F78BE1522E7406D00AD537E /* IPlugEffect.cpp in Sources */,
 				4F78BE1622E7406D00AD537E /* IGraphicsMac_view.mm in Sources */,
@@ -2445,6 +2456,7 @@
 				4FCE29D921D6ED70004BCBA1 /* ITextEntryControl.cpp in Sources */,
 				4F5F344320C0226200487201 /* IPlugPaths.mm in Sources */,
 				4F81598A205D50EB00393585 /* ustring.cpp in Sources */,
+				4FB64D07247956AA006B3013 /* IPlugWebView.mm in Sources */,
 				4FA9F80F21F76177004E6FE2 /* IGraphicsAGG_src.mm in Sources */,
 				4F815980205D50EB00393585 /* fobject.cpp in Sources */,
 				4F815994205D51F000393585 /* vstparameters.cpp in Sources */,
@@ -2475,6 +2487,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F9A82FB213DE80400BE63A4 /* IPopupMenuControl.cpp in Sources */,
+				4FB64D0A247956AC006B3013 /* IPlugWebView.mm in Sources */,
 				4F993F7523055C97000313AF /* IPlugProcessor.cpp in Sources */,
 				4FDAC0EE207D76C600299363 /* IPlugTimer.cpp in Sources */,
 				4F8C10E420BA2796006320CD /* IGraphicsEditorDelegate.cpp in Sources */,
@@ -2588,6 +2601,7 @@
 				4FFBB91320863B0E00DDD0E7 /* vstpresetfile.cpp in Sources */,
 				4FFBB91520863B0E00DDD0E7 /* timer.cpp in Sources */,
 				4FFBB91720863B0E00DDD0E7 /* funknown.cpp in Sources */,
+				4FB64D09247956AB006B3013 /* IPlugWebView.mm in Sources */,
 				4FFBB91820863B0E00DDD0E7 /* vstbus.cpp in Sources */,
 				4FFBB91920863B0E00DDD0E7 /* IPlugPluginBase.cpp in Sources */,
 				4FFBB91A20863B0E00DDD0E7 /* macmain.cpp in Sources */,
