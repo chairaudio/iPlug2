@@ -44,13 +44,14 @@ public:
   
   void LoadHTML(const WDL_String& html);
   void LoadURL(const char* url);
-  void LoadFile(const char* fileName);
-  void EvaluateJavaScript(const char* scriptStr, completionHandlerFunc func);
+  void LoadFile(const char* fileName, const char* bundleID);
+  void EvaluateJavaScript(const char* scriptStr, completionHandlerFunc func = nullptr);
   void EnableScroll(bool enable);
   void SetWebViewBounds(float x, float y, float w, float h, float scale = 1.);
 
-  virtual void OnWebViewReady() {};
-  virtual void OnWebContentLoaded() {};
+  virtual void OnMessageFromWebView(const char* json) {}
+  virtual void OnWebViewReady() {}
+  virtual void OnWebContentLoaded() {}
   
 private:
   

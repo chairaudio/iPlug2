@@ -15,6 +15,11 @@
 #import <WebKit/WebKit.h>
 
 #include "IPlugWebView.h"
+#include "IPlugPaths.h"
+
+namespace iplug {
+extern bool GetResourcePathFromBundle(const char* fileName, const char* searchExt, WDL_String& fullPath, const char* bundleID);
+}
 
 using namespace iplug;
 
@@ -40,9 +45,10 @@ using namespace iplug;
 {
   if([[message name] isEqualToString:@"callback"])
   {
-    NSDictionary* data = (NSDictionary*) message.body;
-    
-    //TODO:
+    NSDictionary* dict = (NSDictionary*) message.body;
+    NSData* data = [NSJSONSerialization dataWithJSONObject:dict options:NSJSONWritingPrettyPrinted error:nil];
+    NSString* jsonString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    mWebView->OnMessageFromWebView([jsonString UTF8String]);
   }
 }
 
@@ -125,21 +131,41 @@ void IWebView::LoadURL(const char* url)
   [webView loadRequest:req];
 }
 
+void IWebView::LoadFile(const char* fileName, const char* bundleID)
+{
+  WKWebView* webView = (__bridge WKWebView*) mWKWebView;
+
+  WDL_String fullPath;
+  WDL_String fileNameWeb("web/");
+  fileNameWeb.Append(fileName);
+
+  GetResourcePathFromBundle(fileNameWeb.Get(), "html", fullPath, bundleID);
+  
+  NSString* pPath = [NSString stringWithUTF8String:fullPath.Get()];
+
+  NSString* str = @"file:";
+  NSString* webroot = [str stringByAppendingString:[pPath stringByReplacingOccurrencesOfString:[NSString stringWithUTF8String:fileName] withString:@""]];
+  NSURL* pageUrl = [NSURL URLWithString:[webroot stringByAppendingString:[NSString stringWithUTF8String:fileName]] relativeToURL:nil];
+  NSURL* rootUrl = [NSURL URLWithString:webroot relativeToURL:nil];
+
+  [webView loadFileURL:pageUrl allowingReadAccessToURL:rootUrl];
+}
+
 void IWebView::EvaluateJavaScript(const char* scriptStr, completionHandlerFunc func)
 {
   WKWebView* webView = (__bridge WKWebView*) mWKWebView;
   
-  if (![webView isLoading]) {
-    [webView evaluateJavaScript:[NSString stringWithUTF8String:scriptStr] completionHandler:^(NSString *result, NSError *error)
-     {
-       if(error != nil)
-         NSLog(@"Error %@",error);
-      else
+  if (![webView isLoading])
+  {
+    [webView evaluateJavaScript:[NSString stringWithUTF8String:scriptStr] completionHandler:^(NSString *result, NSError *error) {
+      if(error != nil)
+        NSLog(@"Error %@",error);
+      else if(func)
       {
         const WDL_String str {[result UTF8String]};
         func(str);
       }
-     }];
+    }];
   }
 }
 
