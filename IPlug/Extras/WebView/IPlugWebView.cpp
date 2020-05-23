@@ -10,7 +10,6 @@
 
 #include "IPlugWebView.h"
 #include "IPlugPaths.h"
-//#include <cmath>
 
 using namespace iplug;
 using namespace Microsoft::WRL;
@@ -64,27 +63,59 @@ void* IWebView::OpenWebView(void* pParent, float x, float y, float w, float h, f
 
 void IWebView::CloseWebView()
 {
+  mWebViewCtrlr = nullptr;
+  mWebViewWnd = nullptr;
 }
 
 void IWebView::LoadHTML(const WDL_String& html)
 {
+  if (mWebViewWnd)
+  {
+    WCHAR htmlWide[IPLUG_WIN_MAX_WIDE_PATH]; // TODO: error check/size
+    UTF8ToUTF16(htmlWide, html.Get(), IPLUG_WIN_MAX_WIDE_PATH); // TODO: error check/size
+    mWebViewWnd->NavigateToString(htmlWide);
+  }
 }
 
 void IWebView::LoadURL(const char* url)
 {
   if (mWebViewWnd)
   {
-    WCHAR urlWide[IPLUG_WIN_MAX_WIDE_PATH];
-    UTF8ToUTF16(urlWide, url, IPLUG_WIN_MAX_WIDE_PATH);
+    WCHAR urlWide[IPLUG_WIN_MAX_WIDE_PATH]; // TODO: error check/size
+    UTF8ToUTF16(urlWide, url, IPLUG_WIN_MAX_WIDE_PATH); // TODO: error check/size
     mWebViewWnd->Navigate(urlWide);
   }
 }
 
-void IWebView::EvaluateJavaScript(const char* scriptStr)
+void IWebView::EvaluateJavaScript(const char* scriptStr, completionHandlerFunc func)
 {
+  assert(mWebViewWnd);
+
+  WCHAR scriptWide[IPLUG_WIN_MAX_WIDE_PATH]; // TODO: error check/size
+  UTF8ToUTF16(scriptWide, scriptStr, IPLUG_WIN_MAX_WIDE_PATH); // TODO: error check/size
+
+  mWebViewWnd->ExecuteScript(scriptWide, Callback<ICoreWebView2ExecuteScriptCompletedHandler>(
+    [func](HRESULT errorCode, LPCWSTR resultObjectAsJson) -> HRESULT {
+      WDL_String str;
+      UTF16ToUTF8(str, resultObjectAsJson);
+      func(str);
+      return S_OK;
+    }).Get());
 }
 
 void IWebView::EnableScroll(bool enable)
 {
 }
 
+void IWebView::SetWebViewBounds(float x, float y, float w, float h, float scale)
+{
+  if (mWebViewCtrlr)
+  {
+    x *= scale;
+    y *= scale;
+    w *= scale;
+    h *= scale;
+
+    mWebViewCtrlr->put_Bounds({ (LONG)x, (LONG)y, (LONG)(x + w), (LONG)(y + h) });
+  }
+}

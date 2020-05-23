@@ -12,6 +12,7 @@
 
 #include "IPlugPlatform.h"
 #include "wdlstring.h"
+#include <functional>
 
 #if defined OS_MAC
   #define PLATFORM_VIEW NSView
@@ -29,6 +30,8 @@
 
 BEGIN_IPLUG_NAMESPACE
 
+using completionHandlerFunc = std::function<void(const WDL_String& result)>;
+
 /** TODO */
 class IWebView
 {
@@ -42,8 +45,9 @@ public:
   void LoadHTML(const WDL_String& html);
   void LoadURL(const char* url);
   void LoadFile(const char* fileName);
-  void EvaluateJavaScript(const char* scriptStr);
+  void EvaluateJavaScript(const char* scriptStr, completionHandlerFunc func);
   void EnableScroll(bool enable);
+  void SetWebViewBounds(float x, float y, float w, float h, float scale = 1.);
 
   virtual void OnWebViewReady() {};
   virtual void OnWebContentLoaded() {};

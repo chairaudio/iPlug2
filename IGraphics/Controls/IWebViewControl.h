@@ -42,7 +42,19 @@ public:
 
   void OnWebViewReady() override
   {
-    LoadURL("https://google.com");
+    WDL_String html{ "<p contentEditable=\"true\"\>Hello</p>" };
+    LoadHTML(html);
+    //LoadURL("https://google.com");
+  }
+
+  void OnRescale() override
+  {
+    SetWebViewBounds(mRECT.L, mRECT.T, mRECT.W(), mRECT.H(), GetUI()->GetTotalScale());
+  }
+
+  void OnResize() override
+  {
+    SetWebViewBounds(mRECT.L, mRECT.T, mRECT.W(), mRECT.H(), GetUI()->GetTotalScale());
   }
 };
 
