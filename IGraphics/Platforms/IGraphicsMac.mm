@@ -88,37 +88,34 @@ float IGraphicsMac::MeasureText(const IText& text, const char* str, IRECT& bound
 #endif
 }
 
-void IGraphicsMac::ContextReady(void* pLayer)
-{
-  OnViewInitialized(pLayer);
-  SetScreenScale([[NSScreen mainScreen] backingScaleFactor]);
-  GetDelegate()->LayoutUI(this);
-  UpdateTooltips();
-  GetDelegate()->OnUIOpen();
-}
-
 void* IGraphicsMac::OpenWindow(void* pParent)
 {
   TRACE
   CloseWindow();
-  mView = (IGRAPHICS_VIEW*) [[IGRAPHICS_VIEW alloc] initWithIGraphics: this];
-  
-#ifndef IGRAPHICS_GL // with OpenGL, we don't get given the glcontext until later, ContextReady will get called elsewhere
-  IGRAPHICS_VIEW* pView = (IGRAPHICS_VIEW*) mView;
-  ContextReady([pView layer]);
+  IGRAPHICS_VIEW* pView = [[IGRAPHICS_VIEW alloc] initWithIGraphics: this];
+  mView = (void*) pView;
+    
+#ifdef IGRAPHICS_GL
+  [[pView openGLContext] makeCurrentContext];
 #endif
+    
+  OnViewInitialized([pView layer]);
+  SetScreenScale([[NSScreen mainScreen] backingScaleFactor]);
+  GetDelegate()->LayoutUI(this);
+  UpdateTooltips();
+  GetDelegate()->OnUIOpen();
   
   if (pParent)
   {
-    [(NSView*) pParent addSubview: (IGRAPHICS_VIEW*) mView];
+    [(NSView*) pParent addSubview: pView];
   }
 
   return mView;
 }
 
-void IGraphicsMac::AddSubView(void* subview)
+void IGraphicsMac::AddPlatformView(const IRECT& r, void* pPlatformView)
 {
-  [(IGRAPHICS_VIEW*) mView addSubview:(NSView*) subview];
+  [(IGRAPHICS_VIEW*) mView addSubview:(NSView*) pPlatformView];
 }
 
 void IGraphicsMac::CloseWindow()
@@ -138,7 +135,7 @@ void IGraphicsMac::CloseWindow()
     IGRAPHICS_VIEW* pView = (IGRAPHICS_VIEW*) mView;
       
 #ifdef IGRAPHICS_GL
-    [((IGRAPHICS_GLLAYER *)pView.layer).openGLContext makeCurrentContext];
+    [[pView openGLContext] makeCurrentContext];
 #endif
       
     [pView removeAllToolTips];

@@ -59,7 +59,7 @@ void ShowBubbleHorizontalActionFunc(IControl* pCaller)
   const IParam* pParam = pCaller->GetParam();
   IRECT bounds = pCaller->GetRECT();
   WDL_String display;
-  pParam->GetDisplayForHostWithLabel(display);
+  pParam->GetDisplayWithLabel(display);
   pGraphics->ShowBubbleControl(pCaller, bounds.R, bounds.MH(), display.Get(), EDirection::Horizontal, IRECT(0,0,50,30));
 }
 
@@ -69,7 +69,7 @@ void ShowBubbleVerticalActionFunc(IControl* pCaller)
   const IParam* pParam = pCaller->GetParam();
   IRECT bounds = pCaller->GetRECT();
   WDL_String display;
-  pParam->GetDisplayForHostWithLabel(display);
+  pParam->GetDisplayWithLabel(display);
   pGraphics->ShowBubbleControl(pCaller, bounds.MW(), bounds.T, display.Get(), EDirection::Vertical, IRECT(0,0,50,30));
 }
 
@@ -625,12 +625,12 @@ void ICaptionControl::Draw(IGraphics& g)
 
   if(pParam)
   {
-    pParam->GetDisplayForHost(mStr);
+    pParam->GetDisplay(mStr);
 
     if (mShowParamLabel)
     {
       mStr.Append(" ");
-      mStr.Append(pParam->GetLabelForHost());
+      mStr.Append(pParam->GetLabel());
     }
   }
 
@@ -936,6 +936,13 @@ ISliderControlBase::ISliderControlBase(const IRECT& bounds, int paramIdx, EDirec
 , mHandleSize(handleSize)
 , mGearing(gearing)
 {
+}
+
+void ISliderControlBase::OnResize()
+{
+  SetTargetRECT(mRECT);
+  mTrackBounds = mRECT;
+  SetDirty(false);
 }
 
 void ISliderControlBase::OnMouseDown(float x, float y, const IMouseMod& mod)

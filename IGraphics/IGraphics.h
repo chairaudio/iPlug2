@@ -66,6 +66,10 @@
 #undef DrawText
 #endif
 
+#ifdef LoadBitmap
+#undef LoadBitmap
+#endif
+
 BEGIN_IPLUG_NAMESPACE
 class IParam;
 BEGIN_IGRAPHICS_NAMESPACE
@@ -730,6 +734,9 @@ private:
 
 public:
 #pragma mark - Platform implementation
+  
+  virtual void AddPlatformView(const IRECT& r, void* pPlatformView) {};
+
   /** Get the x, y position in the graphics context of the mouse cursor
    * @param x Where the X position will be stored
    * @param y Where the Y position will be stored */
@@ -842,7 +849,6 @@ public:
   /** Get the platform level draw context - an HDC or CGContextRef
    * @return void pointer to an HDC or CGContext */
   void* GetPlatformContext() { return mPlatformContext; }
-  virtual void AddSubView(void* viewToAdd) { /* no-op*/ }
   
   /** Convert an x, y position in the view to screen coordinates
    * @param x the x position to convert
@@ -980,8 +986,10 @@ public:
   /** \todo detailed description of how this works
    * @param w New width in pixels
    * @param h New height in pixels
-   * @param scale New scale ratio */
-  void Resize(int w, int h, float scale);
+   * @param scale New scale ratio
+   * @param needsPlatformResize This should be true for a "manual" resize from the plug-in UI and false
+   * if being called from IEditorDelegate::OnParentWindowResize(), in order to avoid feedback */
+  void Resize(int w, int h, float scale, bool needsPlatformResize = true);
   
   /** Enables strict drawing mode. \todo explain strict drawing
    * @param strict Set /true to enable strict drawing mode */
@@ -1225,6 +1233,15 @@ public:
    @param bounds The area that the menu should occupy /todo check */
   void AttachPopupMenuControl(const IText& text = DEFAULT_TEXT, const IRECT& bounds = IRECT());
   
+  /** Remove the IGraphics popup menu, use platform popup menu if available */
+  void RemovePopupMenuControl();
+  
+  /** Attach a control for text entry, to override platform text entry */
+  void AttachTextEntryControl();
+  
+  /** Remove the IGraphics text entry, use platform text entry if available */
+  void RemoveTextEntryControl();
+  
   /** Attach the default control to show text as a control changes*/
   void AttachBubbleControl(const IText& text = DEFAULT_TEXT);
 
@@ -1240,9 +1257,6 @@ public:
   
   /** @return \c true if performance display is shown */
   bool ShowingFPSDisplay() { return mPerfDisplay != nullptr; }
-
-  /** Attach a control for text entry, to override platform text entry */
-  void AttachTextEntryControl();
   
   /** Attach an IControl to the graphics context and add it to the top of the control stack. The control is owned by the graphics context and will be deleted when the context is deleted.
    * @param pControl A pointer to an IControl to attach.

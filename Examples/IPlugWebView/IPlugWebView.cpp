@@ -7,14 +7,14 @@ IPlugWebView::IPlugWebView(const InstanceInfo& info)
   GetParam(kGain)->InitGain("Gain");
   
   mEditorInitFunc = [&]() {
-    //LoadURL("http://localhost:3000/");
+    LoadURL("https://github.com/olilarkin");
     //To load over http:// the host app needs to have NSAppTransportSecurity set to allow it, in its info.plist.
     //https://developer.apple.com/documentation/bundleresources/information_property_list/nsapptransportsecurity?language=objc
     //This is impractical for audio plugins, but perhaps viable for standalone apps
     //To serve content from the app you can use IWebsocketServer which wraps Civetweb
     
     //Otherwise you can load web content into WKWebView via the filesystem, but beware, many modern toolkits like React require content to be served!
-    LoadFileFromBundle("index.html");
+//    LoadFileFromBundle("index.html");
   };
   
   MakePreset("One", 0.);
@@ -62,7 +62,7 @@ bool IPlugWebView::OnMessage(int msgTag, int ctrlTag, int dataSize, const void* 
 
 void IPlugWebView::OnIdle()
 {
-  SendControlValueFromDelegate(kCtrlTagMeter, mLastPeak);
+//  SendControlValueFromDelegate(kCtrlTagMeter, mLastPeak);
 }
 
 void IPlugWebView::OnParamChange(int paramIdx)

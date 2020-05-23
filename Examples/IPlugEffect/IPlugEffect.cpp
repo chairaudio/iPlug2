@@ -18,7 +18,7 @@ IPlugEffect::IPlugEffect(const InstanceInfo& info)
     pGraphics->AttachPanelBackground(COLOR_GRAY);
     pGraphics->LoadFont("Roboto-Regular", ROBOTO_FN);
     const IRECT b = pGraphics->GetBounds();
-    pGraphics->AttachControl(new IWebViewControl(b));
+    pGraphics->AttachControl(new IWebViewControl(b.GetCentredInside(300)));
   };
 #endif
 }

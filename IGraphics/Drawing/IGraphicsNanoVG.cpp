@@ -168,6 +168,11 @@ NVGcolor NanoVGColor(const IColor& color, const IBlend* pBlend)
   return c;
 }
 
+void NanoVGRect(NVGcontext* pContext, const IRECT& r)
+{
+  nvgRect(pContext, r.L, r.T, r.W(), r.H());
+}
+
 void NanoVGSetBlendMode(NVGcontext* pContext, const IBlend* pBlend)
 {
   if (!pBlend)
@@ -206,7 +211,7 @@ NVGpaint NanoVGPaint(NVGcontext* pContext, const IPattern& pattern, const IBlend
 
   if (pattern.mType == EPatternType::Radial)
   {
-    return nvgRadialGradient(pContext, s[0], s[1], 0.0, inverse.mXX, icol, ocol);
+    return nvgRadialGradient(pContext, s[0], s[1], inverse.mXX * pattern.GetStop(0).mOffset, inverse.mXX, icol, ocol);
   }
   else
   {
@@ -424,7 +429,7 @@ void IGraphicsNanoVG::OnViewInitialized(void* pContext)
 #if defined IGRAPHICS_METAL
   mVG = nvgCreateContext(pContext, NVG_ANTIALIAS | NVG_TRIPLE_BUFFER); //TODO: NVG_STENCIL_STROKES currently has issues
 #else
-  mVG = nvgCreateContext(NVG_ANTIALIAS | NVG_STENCIL_STROKES);
+  mVG = nvgCreateContext(NVG_ANTIALIAS /*| NVG_STENCIL_STROKES*/);
 #endif
 
   if (mVG == nullptr)

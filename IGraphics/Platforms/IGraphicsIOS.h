@@ -17,6 +17,8 @@ BEGIN_IGRAPHICS_NAMESPACE
 
 extern void GetScreenDimensions(int& width, int& height);
 
+extern float GetScaleForScreen(int height);
+
 /** IGraphics platform class for IOS
 *   @ingroup PlatformClasses */
 class IGraphicsIOS final : public IGRAPHICS_DRAW_CLASS
@@ -31,8 +33,9 @@ public:
   void CloseWindow() override;
   bool WindowIsOpen() override;
   void PlatformResize(bool parentHasResized) override;
+  void AddPlatformView(const IRECT& r, void* pPlatformView) override;
 
-  void GetMouseLocation(float& x, float&y) const override { /* NO-OP */ };
+  void GetMouseLocation(float& x, float&y) const override;
 
   EMsgBoxResult ShowMessageBox(const char* str, const char* caption, EMsgBoxType type, IMsgBoxCompletionHanderFunc completionHandler) override;
   void ForceEndUserEdit() override;
@@ -65,7 +68,7 @@ public:
   void AttachGestureRecognizer(EGestureType type) override;
   
   bool PlatformSupportsMultiTouch() const override { return true; }
-  
+
 protected:
   PlatformFontPtr LoadPlatformFont(const char* fontID, const char* fileNameOrResID) override;
   PlatformFontPtr LoadPlatformFont(const char* fontID, const char* fontName, ETextStyle style) override;

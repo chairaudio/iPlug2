@@ -32,7 +32,8 @@ public:
   void CloseWindow() override;
   bool WindowIsOpen() override;
   void PlatformResize(bool parentHasResized) override;
-  
+  void AddPlatformView(const IRECT& r, void* pPlatformView) override;
+
   void HideMouseCursor(bool hide, bool lock) override;
   void MoveMouseCursor(float x, float y) override;
   ECursor SetMouseCursor(ECursor cursorType) override;
@@ -65,9 +66,6 @@ public:
 
   float MeasureText(const IText& text, const char* str, IRECT& bounds) const override;
 
-  void ContextReady(void* pLayer);
-
-  void AddSubView(void* subview) override;
 protected:
   void CreatePlatformImGui() override;
 

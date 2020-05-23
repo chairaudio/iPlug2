@@ -122,6 +122,7 @@
 		4F78D95C13B63BA50032E0F3 /* IPlugParameter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4F78D90413B63BA50032E0F3 /* IPlugParameter.cpp */; };
 		4F78D9BB13B63BA50032E0F3 /* IPlugAPIBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4F78D8ED13B63BA40032E0F3 /* IPlugAPIBase.cpp */; };
 		4F78D9C813B63BA50032E0F3 /* IPlugParameter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4F78D90413B63BA50032E0F3 /* IPlugParameter.cpp */; };
+		4F7DB9D92478980700ACF64B /* IPlugWebView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F7DB9D72478980700ACF64B /* IPlugWebView.mm */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		4F815919205D50EB00393585 /* memorystream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4F8157E0205D50EA00393585 /* memorystream.cpp */; };
 		4F81591A205D50EB00393585 /* pluginview.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4F8157E2205D50EA00393585 /* pluginview.cpp */; };
 		4F81591E205D50EB00393585 /* macmain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4F8157E8205D50EA00393585 /* macmain.cpp */; };
@@ -444,8 +445,10 @@
 		4F78D90413B63BA50032E0F3 /* IPlugParameter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.cpp.cpp; name = IPlugParameter.cpp; path = ../../../IPlug/IPlugParameter.cpp; sourceTree = SOURCE_ROOT; tabWidth = 2; };
 		4F78D90513B63BA50032E0F3 /* IPlugMidi.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.h; name = IPlugMidi.h; path = ../../../IPlug/IPlugMidi.h; sourceTree = SOURCE_ROOT; tabWidth = 2; };
 		4F78DB5F13B6462B0032E0F3 /* IPlugWebView.component */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IPlugWebView.component; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F7DB9D72478980700ACF64B /* IPlugWebView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = IPlugWebView.mm; sourceTree = "<group>"; };
+		4F7DB9D82478980700ACF64B /* IPlugWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IPlugWebView.h; sourceTree = "<group>"; };
 		4F7E6F2920DEC3DE00A5F641 /* favicon.ico */ = {isa = PBXFileReference; lastKnownFileType = image.ico; path = favicon.ico; sourceTree = "<group>"; };
-		4F7E6F2B20DEC3DE00A5F641 /* IPlugWAM-standalone.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = "IPlugWAM-standalone.html"; sourceTree = "<group>"; };
+		4F7E6F2B20DEC3DE00A5F641 /* index.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
 		4F7E6F2D20DEC3DE00A5F641 /* IPlugWAM-awp.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "IPlugWAM-awp.js"; sourceTree = "<group>"; };
 		4F7E6F2F20DEC3DE00A5F641 /* IPlugWAM-awn.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "IPlugWAM-awn.js"; sourceTree = "<group>"; };
 		4F8157DD205D50EA00393585 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
@@ -827,6 +830,8 @@
 		4F11D42923201FEF003E1647 /* WebView */ = {
 			isa = PBXGroup;
 			children = (
+				4F7DB9D82478980700ACF64B /* IPlugWebView.h */,
+				4F7DB9D72478980700ACF64B /* IPlugWebView.mm */,
 				4F11D42A23201FEF003E1647 /* IPlugWebViewEditorDelegate.mm */,
 				4F11D42B23201FEF003E1647 /* IPlugWebViewEditorDelegate.h */,
 			);
@@ -1066,7 +1071,7 @@
 			isa = PBXGroup;
 			children = (
 				4F7E6F2920DEC3DE00A5F641 /* favicon.ico */,
-				4F7E6F2B20DEC3DE00A5F641 /* IPlugWAM-standalone.html */,
+				4F7E6F2B20DEC3DE00A5F641 /* index.html */,
 				4F7E6F2C20DEC3DE00A5F641 /* scripts */,
 			);
 			name = Template;
@@ -1644,7 +1649,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
-				LastUpgradeCheck = 1130;
+				LastUpgradeCheck = 1200;
 				TargetAttributes = {
 					4F20EEC8132C69FE0030E34C = {
 						DevelopmentTeam = 686EDA2T8T;
@@ -1707,7 +1712,7 @@
 			};
 			buildConfigurationList = 1DEB913E08733D840010E9CD /* Build configuration list for PBXProject "IPlugWebView-macOS" */;
 			compatibilityVersion = "Xcode 6.3";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 1;
 			knownRegions = (
 				en,
@@ -2176,6 +2181,7 @@
 				B885CBC52304AE7300D73128 /* IPlugProcessor.cpp in Sources */,
 				4F10D3D9203A6719003EF82A /* RtMidi.cpp in Sources */,
 				4FD16D0513B634AA001D0217 /* swell-dlg.mm in Sources */,
+				4F7DB9D92478980700ACF64B /* IPlugWebView.mm in Sources */,
 				4FD16D1613B634D2001D0217 /* swell-ini.cpp in Sources */,
 				4F5C5F6921BED05B00E024A7 /* swellappmain.mm in Sources */,
 				4FD16D3A13B63582001D0217 /* swell-kb.mm in Sources */,
@@ -2541,7 +2547,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.AcmeInc.standalone.IPlugWebView.AUv3;
+				PRODUCT_BUNDLE_IDENTIFIER = com.AcmeInc.app.IPlugWebView.AUv3;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
@@ -2579,7 +2585,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.AcmeInc.standalone.IPlugWebView.AUv3;
+				PRODUCT_BUNDLE_IDENTIFIER = com.AcmeInc.app.IPlugWebView.AUv3;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
@@ -2617,7 +2623,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.AcmeInc.standalone.IPlugWebView.AUv3;
+				PRODUCT_BUNDLE_IDENTIFIER = com.AcmeInc.app.IPlugWebView.AUv3;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
@@ -2728,7 +2734,7 @@
 					"$(APP_FRAMEWORKS)",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.AcmeInc.standalone.${BINARY_NAME}";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.AcmeInc.app.${BINARY_NAME}";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = NO;
 				WRAPPER_EXTENSION = app;
@@ -2754,7 +2760,7 @@
 					"$(APP_FRAMEWORKS)",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.AcmeInc.standalone.${BINARY_NAME}";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.AcmeInc.app.${BINARY_NAME}";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = NO;
 				WRAPPER_EXTENSION = app;
@@ -2780,7 +2786,7 @@
 					"$(APP_FRAMEWORKS)",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.AcmeInc.standalone.${BINARY_NAME}";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.AcmeInc.app.${BINARY_NAME}";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = NO;
 				WRAPPER_EXTENSION = app;
@@ -3371,7 +3377,7 @@
 					"$(APP_FRAMEWORKS)",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.AcmeInc.standalone.${BINARY_NAME}";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.AcmeInc.app.${BINARY_NAME}";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = NO;
 				WRAPPER_EXTENSION = app;
@@ -3397,7 +3403,7 @@
 					"$(APP_FRAMEWORKS)",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.AcmeInc.standalone.${BINARY_NAME}";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.AcmeInc.app.${BINARY_NAME}";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = NO;
 				WRAPPER_EXTENSION = app;
@@ -3423,7 +3429,7 @@
 					"$(APP_FRAMEWORKS)",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.AcmeInc.standalone.${BINARY_NAME}";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.AcmeInc.app.${BINARY_NAME}";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = NO;
 				WRAPPER_EXTENSION = app;
