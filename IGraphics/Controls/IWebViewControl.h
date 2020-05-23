@@ -33,15 +33,17 @@ public:
   
   void OnAttached() override
   {
-    GetUI()->AddPlatformView(mRECT, OpenWebView(mRECT.L, mRECT.T, mRECT.W(), mRECT.H()));
-    LoadURL("https://google.com");
+    GetUI()->AddPlatformView(mRECT, OpenWebView(GetUI()->GetWindow(), mRECT.L, mRECT.T, mRECT.W(), mRECT.H(), GetUI()->GetTotalScale()));
   }
   
   void Draw(IGraphics& g) override
   {
   }
-  
-private:
+
+  void OnWebViewReady() override
+  {
+    LoadURL("https://google.com");
+  }
 };
 
 END_IGRAPHICS_NAMESPACE

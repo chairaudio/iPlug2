@@ -35,7 +35,6 @@ static double sFPS = 0.0;
 
 #define PARAM_EDIT_ID 99
 #define IPLUG_TIMER_ID 2
-#define IPLUG_WIN_MAX_WIDE_PATH 4096
 
 #define TOOLTIPWND_MAXWIDTH 250
 

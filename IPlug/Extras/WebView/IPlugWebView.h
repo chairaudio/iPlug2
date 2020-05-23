@@ -21,18 +21,22 @@
   #define PLATFORM_VIEW UIView
   #define PLATFORM_RECT CGRect
   #define MAKERECT CGRectMake
+#elif defined OS_WIN
+  #include <wrl.h>
+  #include <wil/com.h>
+  #include "WebView2.h"
 #endif
 
 BEGIN_IPLUG_NAMESPACE
 
-/** This EditorDelegate allows using WKWebKitView for an iPlug user interface on macOS/iOS... */
+/** TODO */
 class IWebView
 {
 public:
   IWebView();
   virtual ~IWebView();
   
-  void* OpenWebView(int x, int y, int w, int h);
+  void* OpenWebView(void* pParent, float x, float y, float w, float h, float scale = 1.);
   void CloseWebView();
   
   void LoadHTML(const WDL_String& html);
@@ -40,7 +44,8 @@ public:
   void LoadFile(const char* fileName);
   void EvaluateJavaScript(const char* scriptStr);
   void EnableScroll(bool enable);
-  
+
+  virtual void OnWebViewReady() {};
   virtual void OnWebContentLoaded() {};
   
 private:
@@ -49,6 +54,9 @@ private:
   void* mWKWebView = nullptr;
   void* mWebConfig = nullptr;
   void* mScriptHandler = nullptr;
+#elif defined OS_WIN
+  wil::com_ptr<ICoreWebView2Controller> mWebViewCtrlr;
+  wil::com_ptr<ICoreWebView2> mWebViewWnd;
 #endif
 };
 
