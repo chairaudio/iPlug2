@@ -26,8 +26,9 @@ BEGIN_IGRAPHICS_NAMESPACE
 class IWebViewControl : public IControl, public IWebView
 {
 public:
-  IWebViewControl(const IRECT& bounds)
+  IWebViewControl(const IRECT& bounds, bool opaque = true)
   : IControl(bounds)
+  , IWebView(opaque)
   {
   }
   
@@ -43,7 +44,7 @@ public:
 
   void OnWebViewReady() override
   {
-    WDL_String html{ "<p contentEditable=\"true\">Hello</p>" };
+    WDL_String html{ "<meta name=\"viewport\" content=\"initial-scale=1.0\"/><p contentEditable=\"true\">Hello</p>" };
     LoadHTML(html);
 //    LoadURL("https://google.com");
   }

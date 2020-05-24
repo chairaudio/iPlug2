@@ -36,7 +36,7 @@ using completionHandlerFunc = std::function<void(const WDL_String& result)>;
 class IWebView
 {
 public:
-  IWebView();
+  IWebView(bool opaque = true);
   virtual ~IWebView();
   
   void* OpenWebView(void* pParent, float x, float y, float w, float h, float scale = 1.);
@@ -54,7 +54,7 @@ public:
   virtual void OnWebContentLoaded() {}
   
 private:
-  
+  bool mOpaque = true;
 #if defined OS_MAC || defined OS_IOS
   void* mWKWebView = nullptr;
   void* mWebConfig = nullptr;

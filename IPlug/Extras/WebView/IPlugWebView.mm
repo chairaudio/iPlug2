@@ -59,7 +59,8 @@ using namespace iplug;
 
 @end
 
-IWebView::IWebView()
+IWebView::IWebView(bool opaque)
+: mOpaque(opaque)
 {
 }
 
@@ -83,11 +84,21 @@ void* IWebView::OpenWebView(void* pParent, float x, float y, float w, float h, f
   
   WKWebView* webView = [[WKWebView alloc] initWithFrame: MAKERECT(x, y, w, h) configuration:webConfig];
   
+
 #if defined OS_IOS
   [webView.scrollView setScrollEnabled:NO];
+  if(!mOpaque)
+  {
+    webView.backgroundColor = [UIColor clearColor];
+    webView.scrollView.backgroundColor = [UIColor clearColor];
+    webView.opaque = NO;
+  }
 #endif
 
 #if defined OS_MAC
+  if(!mOpaque)
+    [webView setValue:[NSNumber numberWithBool:YES]  forKey:@"drawsTransparentBackground"];
+  
   [webView setAllowsMagnification:NO];
 #endif
   
